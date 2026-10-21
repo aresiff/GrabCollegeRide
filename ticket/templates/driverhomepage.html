@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>draft page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        
+        /* Body Section */
+        body {
+            background-color: lightsalmon;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        /* Header Section */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            position:fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+
+        /* Navigation Section */
+        .navbar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-55%);
+            font-size: 24px;
+            font-weight: bold;
+            
+        }
+        
+        .title a {
+            color: #f57c00;
+            text-decoration: none;
+            font-size: 40px;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            /* Positioning the navigation links absolute */
+            position: absolute;
+            left: 80%;
+            transform: translateX(-15%);
+            font-size: 10px;  
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1rem;
+            position: relative;
+            /* Adding transition effect for the color change */
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            /* Changing color on hover */
+            color: #f57c00;
+        }
+        
+        .nav-links a::after {
+            /* Creating an underline effect */
+            content: '';
+            display: block;
+            /* Setting the initial width to 0 */
+            width: 0;
+            height: 2px;
+            /* Setting the color for the underline */
+            background: #f57c00;
+            /* Adding transition effect for the width change */
+            transition: width 0.3s;
+            /* Positioning the underline at the bottom */
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .nav-links a:hover::after {
+            /* Expanding the underline on hover */
+            width: 100%;
+        }
+        
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            .nav-links {
+                /* Hiding the navigation links */
+                display: none;
+                /* Positioning the navigation links absolutely */
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                /* Setting background color for the dropdown menu */
+                background: #fff;
+                /* Setting width for the dropdown menu */
+                width: 200px;
+                /* Displaying links in a column */
+                flex-direction: column;
+                /* Adding shadow to the dropdown menu */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            
+        .nav-links a {
+            padding: 1rem;
+            text-align: center;
+        }   }
+
+
+        /* Sliding Menu Section */
+        #menu{
+            font-size: 30px;
+            /* Changing cursor to pointer on hover */
+            cursor: pointer;
+        }
+
+        #sidenav{
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f57c00;
+            /* Hiding overflow content */
+            overflow-x: hidden;
+            /* Adding transition effect for the width change */
+            transition: 0.5s;
+            /* Padding at the top of the sidenav */
+            padding-top: 70px;
+            font-size: 20px;
+        }
+
+        p{
+            /* Setting color for the paragraph text */
+            color: whitesmoke;
+            text-align: center;
+        }
+
+        a{
+            text-align: left;
+            margin-left: 30px;
+            color:#fff;
+            text-decoration: none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #sidenav #closebtn{
+            position:absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            color: whitesmoke;
+            cursor: pointer;
+        }
+
+        h1{
+            text-align: center;
+            font-size: 100px;
+        }
+
+        #sidenav a {
+            /* Setting color for the links in the sidenav */
+            color:#fff;
+            /* Removing text decoration */
+            text-decoration: none;
+            font-size: 20px;
+            /* Adding transition effect for the color change */
+            transition: color 0.3s;
+        }
+        
+        #sidenav a:hover{
+            /* Changing color on hover */
+            color:black;
+        }
+
+        .hrsidenav{
+            width: 215px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        /* Content Section */
+
+        .content {
+            background-color: white;
+            padding: 40px;
+            max-width: 1400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            margin: 100px auto; /* Center the content block and give it margin */
+        }
+
+        .grab-header {
+            font-size: 36px;
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+        /* Carousel Container Section */
+
+        /* Global Styles to reset margin, padding, and set box-sizing */
+        *,
+        *::before,
+        *::after {
+            margin: 0; /* Reset margin to 0 for all elements */
+            padding: 0; /* Reset padding to 0 for all elements */
+            box-sizing: border-box; /* Set box-sizing to border-box for all elements */
+        }
+        
+        .container {
+            width: 100%; /* Full width of the container */
+            max-width: 800px; /* Maximum width of the container */
+            height: 500px; /* Fixed height of the container */
+            display: flex; /* Use flexbox for layout */
+            justify-content: center; /* Center items horizontally */
+            margin: 100px auto; /* Center the container with top and bottom margin */
+            align-items: stretch; /* Stretch items to fit the container height */
+            gap: 1.25rem; /* Gap between items */
+            transition: all 400ms; /* Smooth transition for all properties */
+        }
+
+        #rollover{
+            border-radius: 10px; /* Rounded corners */
+            height: 500px; /* Fixed height */
+            width: 1000px; /* Fixed width */
+        } 
+        /* Styles for each card in the carousel */
+        .card {
+            flex: 1; /* Each card takes equal space */
+            height: 100%; /* Full height of the container */
+            transition: all 400ms; /* Smooth transition for all properties */
+            cursor:default; /* Default cursor */
+        }
+        /* Image inside each card */
+        .card > img {
+            display: block;
+            max-width: 100%; /* Image takes full width of the card */
+            height: 100%; /* Image takes full height of the card */
+            object-fit: cover; /* Cover the entire card area */
+        }
+        /* Adjust the position of odd cards */
+        .card:nth-child(odd) {
+            translate: 0 -20px; /* Translate the card slightly upwards */
+        }
+        /* Adjust the position of even cards */
+        .card:nth-child(even) {
+            translate: 0 20px; /* Translate the card slightly downwards */
+        }
+        /* Grayscale effect on all cards except the hovered one */
+        .container:hover .card:not(:hover) {
+            filter: grayscale(100%); /* Apply grayscale filter */
+        }
+        /* Enlarges the hovered card */
+        .card:hover {
+            flex: 3; /* Increase the flex value to enlarge the card */
+        }
+
+        
+        /* Button Book Now Section */
+
+        /* Global Styles to reset margin, padding, and set box-sizing */
+        *,
+        *::before,
+        *::after {
+            margin: 0; /* Reset margin to 0 for all elements */
+            padding: 0; /* Reset padding to 0 for all elements */
+            box-sizing: border-box; /* Set box-sizing to border-box for all elements */
+        }
+        /* Styles for the body of the button section */
+        #bodybutton {
+            font-family: "Roboto";
+            display: flex; /* Use flexbox for layout */
+            justify-content: center; /* Center items horizontally */
+            align-items: center; /* Center items vertically */
+        }
+        
+        button {
+            border: 0; /* Remove border */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            position: relative; /* Set position to relative for positioning child elements */
+        }
+        /* Styles for the button's inner div */
+        button div {
+            background-color: rgb(255, 70, 85); 
+            padding: 1.2rem 5.5rem; /* Add padding */
+            position: relative; /* Set position to relative for positioning child elements */
+            overflow: hidden; /* Hide overflow content */
+        }
+        /* Styles for the button's anchor element */
+        button a {
+            position: relative; /* Set position to relative */
+            text-decoration: none; /* Remove underline from text */
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ece8e1;
+            text-transform: uppercase; /* Transform text to uppercase */
+            z-index: 2; /* Set z-index to position above other elements */
+            margin: 10px auto; /* Center the element with margin */
+        }
+        
+        /* Styles for the button's before and after pseudo-elements */
+        button::before,
+        button::after {
+            content: ""; /* Insert empty content */
+            position: absolute; /* Set position to absolute */
+            width: 105%;
+            height: 50%;
+            background-color: transparent; /* Set background color to transparent */
+            left: -2.5%; /* Position slightly to the left */
+            z-index: -1; /* Position behind other elements */
+        }
+        /* Additional styles for the button's before pseudo-element */
+        button::before {
+            border-bottom: 0; /* Remove bottom border */
+            top: -10%; /* Position slightly above */
+        }
+        /* Additional styles for the button's after pseudo-element */
+        button::after {
+            border-top: 0; /* Remove top border */
+            bottom: -10%; /* Position slightly below */
+        }
+        /* Styles for the button's span element */
+        button span {
+            position: absolute; /* Set position to absolute */
+            top: 0;
+            left: 0;
+            width: 120%;
+            height: 110%;
+            background-color: rgb(15, 25, 35);
+            transform: translateX(-105%) skew(-10deg); /* Apply transformation */
+            transition: 0.4s ease; /* Set transition effect */
+        }
+        /* Styles for the button's span element on hover */
+        button:hover span {
+            transform: translateX(-5%) skew(-10deg); /* Apply transformation on hover */
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: #20263e;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer .footertitle {
+            font-size: 36px;
+            font-weight: 700;
+            color: #f57c00;
+        }
+
+        .footer .address,
+        .footer .contact {
+            margin: 20px 0;
+            font-size: 16px;
+        }
+
+        .footer .social-icons {
+            margin: 5px 0;
+        }
+        
+        .footer .social-icons a {
+            margin: 0 5px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px
+        }
+        
+        .footer .social-icons a:hover {
+            color: #f57c00;
+        }
+        
+        .footer .icon-container {
+            text-align: center;
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        .footer .icon-container img {
+            display: block;
+            margin: 0 auto;
+            margin-top: 5px;
+        }
+        
+        .imgicon {
+            width: 50px;
+        }
+
+        .footer .copyright {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+
+    <script>
+        // Navigation Link Section
+        const navLinks = document.querySelector('.nav-links');
+        
+        
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');   
+        });
+
+        // Sliding Menu Section
+        function open_nav(){
+            document.getElementById('sidenav').style.width = '250px';
+        }   
+
+        function closebtn(){
+            document.getElementById('sidenav').style.width = '0';
+        }
+
+    </script>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="navbar">
+
+            <span id="menu" onclick="open_nav()">&#9776;</span>
+            <div id="sidenav">
+                <span id="closebtn" onclick="closebtn()">&times</span>
+
+                <hr class="hrsidenav"> 
+                <a href="{% url 'driverhomepage' %}" class="insidenav">Home</a> 
+                <br> 
+                <hr class="hrsidenav">
+                <a href="{% url 'driver_profile' %}" class="insidenav">Profile</a> 
+                <br> 
+                <hr class="hrsidenav">
+                <a href="{% url 'index' %}" class="insidenav">Logout</a> 
+                <br> 
+                <hr class="hrsidenav">
+            </div>
+
+            <div class="title">
+                <a href="{% url 'driverhomepage' %}" id="title">GRAB COLLEGE RIDE</a>
+            </div>
+
+            <nav class="nav-links">
+                <a href="{% url 'driverhomepage' %}">Home</a>
+                <a href="{% url 'driver_booking_list' %}">Pick Up List</a>
+                <a href="{% url 'search_bookings' %}">Search</a>
+            </nav>        
+        </div>
+    </header>
+
+    <div class="content">
+        <h1 class="grab-header">Welcome back, {{ drivername }}!</h1>
+        
+
+        <div class="container">
+            <div class="card">
+                {% load static %}<img src="{% static 'img1.png' %}">
+            </div>
+            <div class="card">
+                {% load static %}<img src="{% static 'img5.png' %}">
+            </div>
+            <div class="card">
+                {% load static %}<img src="{% static 'img3.png' %}">
+            </div>
+            <div class="card">
+                {% load static %}<img src="{% static 'img4.png' %}">
+            </div>
+            <div class="card">
+                {% load static %}<img src="{% static 'img2.png' %}">
+            </div>
+          </div>
+
+        <div id="bodybutton">
+            <button>
+              <div>
+                <span></span>
+                <a href="{% url 'driver_booking_list' %}">PICK UP LIST</a>
+              </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footertitle">Grab College Ride</div>
+        <div class="address">
+            2333, Mukim Beranang, 43700 Beranang, Selangor
+        </div>
+        <div class="contact">
+            Phone: (123) 456-7890 | Email: contact@grabcollegeride.com
+        </div>
+        <div class="footer">
+            <div class="social-icons">
+                <div class="icon-container">
+                    <a href="https://www.facebook.com/"><i class="fa fa-facebook">Facebook</i>{% load static %}<img src="{% static 'facebookicon.png' %}" alt="Facebook Icon" class="imgicon"></a>
+                    
+                </div>
+                <div class="icon-container">
+                    <a href="https://www.twitter.com/"><i class="fa fa-twitter">Twitter</i>{% load static %}<img src="{% static 'twittericon.png' %}" alt="" class="imgicon"></a>
+                </div>
+                <div class="icon-container">
+                    <a href="https://www.instagram.com/"><i class="fa fa-instagram">Instagram</i>{% load static %}<img src="{% static 'instagramicon.png' %}" alt="" class="imgicon"></a>
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Grab College Ride. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Font Awesome for social icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    
+</body>
+</html>

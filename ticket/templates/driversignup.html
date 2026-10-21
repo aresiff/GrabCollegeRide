@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Signup - Grab College Ride</title>
+    {% load static %}
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #e8f5e9; /* Light green for Grab theme */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url("{% static 'grab.png' %}") center center no-repeat;
+            background-size: cover;
+        }
+        .signup-container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #f57c00; /* Orange for Driver */
+            margin-bottom: 30px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn-signup {
+            width: 100%;
+            padding: 15px;
+            background-color: #f57c00; /* Orange for Driver */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-signup:hover {
+            background-color: #ef6c00;
+        }
+        .login-link {
+            display: block;
+            margin-top: 20px;
+            color: #f57c00;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        .login-link:hover {
+            color: #ef6c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Driver Signup</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <input type="text" name="driverid" class="input-field" placeholder="Enter Driver ID" required>
+            <input type="text" name="drivername" class="input-field" placeholder="Enter Full Name" required>
+            <input type="tel" name="driverphoneno" class="input-field" placeholder="Enter Phone Number" required>
+            <input type="password" name="driverpass" class="input-field" placeholder="Create Password" required>
+            <input type="text" name="vehicleplateno" class="input-field" placeholder="Enter Vehicle Plate No" required>
+            <input type="text" name="vehiclebrand" class="input-field" placeholder="Enter Vehicle Brand" required>
+            <input type="text" name="vehicletype" class="input-field" placeholder="Enter Vehicle Type" required>
+            <input type="number" name="vehiclecapacity" class="input-field" placeholder="Enter Vehicle Capacity" required>
+            <button type="submit" class="btn-signup">Sign Up</button>
+        </form>
+        <a href="{% url 'driverlogin' %}" class="login-link">Already have an account? Login here</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Header Section */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            position:fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Navigation Section */
+        .navbar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-55%);
+            font-size: 24px;
+            font-weight: bold;
+            
+        }
+        
+        .title a {
+            color: #43a047;
+            text-decoration: none;
+            font-size: 40px;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            /* Positioning the navigation links absolute */
+            position: absolute;
+            left: 80%;
+            transform: translateX(-15%);
+            font-size: 10px;  
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1rem;
+            position: relative;
+            /* Adding transition effect for the color change */
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            /* Changing color on hover */
+            color: #43a047;
+        }
+        
+        .nav-links a::after {
+            /* Creating an underline effect */
+            content: '';
+            display: block;
+            /* Setting the initial width to 0 */
+            width: 0;
+            height: 2px;
+            /* Setting the color for the underline */
+            background: #43a047;
+            /* Adding transition effect for the width change */
+            transition: width 0.3s;
+            /* Positioning the underline at the bottom */
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .nav-links a:hover::after {
+            /* Expanding the underline on hover */
+            width: 100%;
+        }
+        
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            .nav-links {
+                /* Hiding the navigation links */
+                display: none;
+                /* Positioning the navigation links absolutely */
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                /* Setting background color for the dropdown menu */
+                background: #fff;
+                /* Setting width for the dropdown menu */
+                width: 200px;
+                /* Displaying links in a column */
+                flex-direction: column;
+                /* Adding shadow to the dropdown menu */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            
+        .nav-links a {
+            padding: 1rem;
+            text-align: center;
+        }   }
+
+
+        /* Sliding Menu Section */
+        #menu{
+            font-size: 30px;
+            /* Changing cursor to pointer on hover */
+            cursor: pointer;
+        }
+
+        #sidenav{
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #43a047;
+            /* Hiding overflow content */
+            overflow-x: hidden;
+            /* Adding transition effect for the width change */
+            transition: 0.5s;
+            /* Padding at the top of the sidenav */
+            padding-top: 70px;
+            font-size: 20px;
+        }
+
+        p{
+            /* Setting color for the paragraph text */
+            color: whitesmoke;
+            text-align: center;
+        }
+
+        a{
+            text-align: left;
+            margin-left: 30px;
+            color:#fff;
+            text-decoration: none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #sidenav #closebtn{
+            position:absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            color: whitesmoke;
+            cursor: pointer;
+        }
+
+        h1{
+            text-align: center;
+            font-size: 100px;
+        }
+
+        #sidenav a {
+            /* Setting color for the links in the sidenav */
+            color:#fff;
+            /* Removing text decoration */
+            text-decoration: none;
+            font-size: 20px;
+            /* Adding transition effect for the color change */
+            transition: color 0.3s;
+        }
+        
+        #sidenav a:hover{
+            /* Changing color on hover */
+            color:yellow;
+        }
+
+        .hrsidenav{
+            width: 215px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: #20263e;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer .footertitle {
+            font-size: 36px;
+            font-weight: 700;
+            color: #43a047;
+        }
+
+        .footer .address,
+        .footer .contact {
+            margin: 20px 0;
+            font-size: 16px;
+        }
+
+        .footer .social-icons {
+            margin: 5px 0;
+        }
+        
+        .footer .social-icons a {
+            margin: 0 5px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px
+        }
+        
+        .footer .social-icons a:hover {
+            color: #43a047;
+        }
+        
+        .footer .icon-container {
+            text-align: center;
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        .footer .icon-container img {
+            display: block;
+            margin: 0 auto;
+            margin-top: 5px;
+        }
+        
+        .imgicon {
+            width: 50px;
+        }
+
+        .footer .copyright {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+
+        body {
+            background-color: #e8f5e9;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        .form-container {
+            background-color: white;
+            padding: 40px;
+            max-width:600px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            margin: 100px auto; /* Center the content block and give it margin */
+            border-radius: 8px;
+        }
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-custom {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            margin-top: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <script>
+        // Navigation Link Section
+        const navLinks = document.querySelector('.nav-links');
+        
+        
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');   
+        });
+
+        // Sliding Menu Section
+        function open_nav(){
+            document.getElementById('sidenav').style.width = '250px';
+        }   
+
+        function closebtn(){
+            document.getElementById('sidenav').style.width = '0';
+        }
+
+    </script>
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="header">
+    <div class="navbar">
+
+        <span id="menu" onclick="open_nav()">&#9776;</span>
+        <div id="sidenav">
+            <span id="closebtn" onclick="closebtn()">&times</span>
+
+            <hr class="hrsidenav"> 
+            <a href="{% url 'studenthomepage' %}" class="insidenav">Home</a> 
+            <br> 
+            <hr class="hrsidenav">
+            <a href="{% url 'student_profile' %}" class="insidenav">Profile</a>  
+            <br> 
+            <hr class="hrsidenav">
+            <a href="{% url 'index' %}" class="insidenav">Logout</a> 
+            <br> 
+            <hr class="hrsidenav">
+        </div>
+
+        <div class="title">
+            <a href="{% url 'studenthomepage' %}" id="title">GRAB COLLEGE RIDE</a>
+        </div>
+
+        <nav class="nav-links">
+            <a href="{% url 'studenthomepage' %}">Home</a>
+            <a href="{% url 'student_booking' %}">Booking</a>
+            <a href="{% url 'studenthistory' %}">History</a>
+        </nav>        
+    </div>
+</header>
+
+<div class="form-container">
+    <h2 class="form-title">Booking Page</h2>
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        <!-- Display the logged-in student's ID -->
+        <div class="form-group">
+            <label for="studentid">Student ID:</label>
+            <input type="text" class="form-control" name="studentid" value="{{ student.studentid }}" readonly>
+        </div>
+
+        <!-- Select Route From -->
+        <div class="form-group">
+            <label for="routefrom">Route From:</label>
+            <select name="routefrom" class="form-control" required>
+                <option value="" disabled selected>Select starting location</option>
+                {% for route in routefrom %}
+                    <option value="{{ route.routefromid }}">{{ route.routefromname }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Select Route To -->
+        <div class="form-group">
+            <label for="routeto">Route To:</label>
+            <select name="routeto" class="form-control" required>
+                <option value="" disabled selected>Select destination</option>
+                {% for route in routeto %}
+                    <option value="{{ route.routetoid }}">{{ route.routetoname }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Select Driver Based on Capacity -->
+        <div class="form-group">
+            <label for="driver">Driver:</label>
+            <select name="driver" class="form-control" required>
+                <option value="" disabled selected>Select driver</option>
+                {% for driver in drivers %}
+                    <option value="{{ driver.driverid }}">{{ driver.drivername }} (Capacity: {{ driver.vehiclecapacity }})</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Enter Number of People (Person Capacity) -->
+        <div class="form-group">
+            <label for="personcapacity">Number of People:</label>
+            <input type="number" class="form-control" name="personcapacity" required min="1" placeholder="Enter number of people">
+        </div>
+
+        <!-- Enter Pickup Time -->
+        <div class="form-group">
+            <label for="pickup_time">Pickup Time:</label>
+            <input type="datetime-local" class="form-control" name="pickup_time" required>
+        </div>
+
+        <!-- Submit Booking -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-custom btn-block">Book Now</button>
+        </div>
+    </form>
+</div>
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="footertitle">Grab College Ride</div>
+    <div class="address">
+        2333, Mukim Beranang, 43700 Beranang, Selangor
+    </div>
+    <div class="contact">
+        Phone: (123) 456-7890 | Email: contact@grabcollegeride.com
+    </div>
+    <div class="footer">
+        <div class="social-icons">
+            <div class="icon-container">
+                <a href="https://www.facebook.com/"><i class="fa fa-facebook">Facebook</i>{% load static %}<img src="{% static 'facebookicon.png' %}" alt="Facebook Icon" class="imgicon"></a>
+                
+            </div>
+            <div class="icon-container">
+                <a href="https://www.twitter.com/"><i class="fa fa-twitter">Twitter</i>{% load static %}<img src="{% static 'twittericon.png' %}" alt="" class="imgicon"></a>
+            </div>
+            <div class="icon-container">
+                <a href="https://www.instagram.com/"><i class="fa fa-instagram">Instagram</i>{% load static %}<img src="{% static 'instagramicon.png' %}" alt="" class="imgicon"></a>
+
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2024 Grab College Ride. All rights reserved.
+    </div>
+</footer>
+
+<!-- Font Awesome for social icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
