@@ -1,6 +1,6 @@
-# GrabCollegeRide
+# Grab College Ride
 
-GrabCollegeRide is a Django web application for students and drivers to sign up,
+Grab College Ride is a Django web application for students and drivers to sign up,
 find and manage college rides, and handle ride bookings.
 
 ## Run locally on Windows
